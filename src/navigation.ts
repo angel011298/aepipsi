@@ -14,7 +14,7 @@ export const headerData = {
     },
     {
       text: 'Artículos',
-      href: '/blog',
+      href: '/articulos',
     },
     {
       text: 'Ubicación',

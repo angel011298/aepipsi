@@ -43,9 +43,70 @@ const { language, textDirection } = I18N;
     <ClientRouter fallback="swap" />
   </head>
 
-  <body class="antialiased text-default bg-page tracking-tight">
+  <body class="antialiased text-default bg-page tracking-tight overflow-x-hidden">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 -z-10 pointer-events-none opacity-10 overflow-hidden">
+      <div class="absolute top-[10%] left-[5%] animate-float-slow">
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 100C40 66.8629 66.8629 40 100 40C133.137 40 160 66.8629 160 100C160 133.137 133.137 160 100 160C66.8629 160 40 133.137 40 100Z" stroke="currentColor" stroke-width="2" stroke-dasharray="10 10" class="text-pink-300"/>
+        </svg>
+      </div>
+      <div class="absolute bottom-[20%] right-[10%] animate-float-reverse">
+        <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="75" cy="75" r="70" stroke="currentColor" stroke-width="2" class="text-purple-300 opacity-50"/>
+          <path d="M75 25V125M25 75H125" stroke="currentColor" stroke-width="2" class="text-purple-400"/>
+        </svg>
+      </div>
+    </div>
+
     <slot />
 
     <BasicScripts />
+
+    <!-- Global Click Effect Script -->
+    <script is:inline>
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('button, a');
+        if (!target) return;
+
+        const pulse = document.createElement('div');
+        pulse.className = 'click-pulse';
+        pulse.style.left = `${e.clientX}px`;
+        pulse.style.top = `${e.clientY}px`;
+        document.body.appendChild(pulse);
+
+        setTimeout(() => pulse.remove(), 600);
+      });
+    </script>
+
+    <style is:global>
+      .click-pulse {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: rgba(233, 30, 99, 0.4);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        animation: pulse-out 0.6s ease-out forwards;
+        z-index: 10000;
+      }
+
+      @keyframes pulse-out {
+        0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+      }
+
+      @keyframes float-slow {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-40px) rotate(10deg); }
+      }
+      @keyframes float-reverse {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(40px) rotate(-10deg); }
+      }
+      .animate-float-slow { animation: float-slow 12s ease-in-out infinite; }
+      .animate-float-reverse { animation: float-reverse 15s ease-in-out infinite; }
+    </style>
   </body>
 </html>
