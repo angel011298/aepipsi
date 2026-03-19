@@ -22,10 +22,10 @@ Sus datos serán tratados para las siguientes finalidades **necesarias**:
 *(Si no desea recibir esta información, puede manifestarlo vía correo electrónico).*
 
 ### 3. Transferencia de datos
-AEPI no realiza transferencias de sus datos personales a terceros, salvo las excepciones previstas en el artículo 37 de la Ley, o when sea estrictamente necesario para la referencia médica con otros especialistas, siempre contando con su consentimiento previo.
+AEPI no realiza transferencias de sus datos personales a terceros, salvo las excepciones previstas en el artículo 37 de la Ley, o cuando sea estrictamente necesario para la referencia médica con otros especialistas, siempre contando con su consentimiento previo.
 
 ### 4. Derechos ARCO
-Usted tiene derecho a conocer, rectificar, cancelar u oponerse al tratamiento de sus datos. Para ejercer estos derechos, debe enviar una solicitud por escrito al correo: **[TU_CORREO_AQUÍ]**.
+Usted tiene derecho a conocer, rectificar, cancelar u oponerse al tratamiento de sus datos. Para ejercer estos derechos, debe enviar una solicitud por escrito al correo: **aepi.sociedad@gmail.com**.
 
 ### 5. Cambios al aviso
 Este aviso puede sufrir modificaciones por cambios legales o de operación. La versión más reciente estará siempre disponible en este sitio web.

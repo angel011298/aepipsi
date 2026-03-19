@@ -38,11 +38,6 @@ export const footerData = {
   secondaryLinks: [
     { text: 'Aviso de Privacidad', href: '/privacy' },
   ],
-  socialLinks: [
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/aepi.sociedad' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/contagiandobienestar' },
-    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/525520381691' },
-    { ariaLabel: 'Email', icon: 'tabler:mail', href: 'mailto:aepi.sociedad@gmail.com' },
-  ],
+  socialLinks: [],
   footNote: '© 2026 AEPI · Amar y Educar con Psicología Integral. Todos los derechos reservados.',
 };

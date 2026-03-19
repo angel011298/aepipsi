@@ -51,25 +51,25 @@ const events = await getCollection('events');
 
   <!-- Events Section -->
   {events.length > 0 && (
-    <section id="eventos" class="relative py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <Features2
-              title="Próximos Eventos"
-              subtitle="Talleres, pláticas y actividades diseñadas para tu crecimiento y bienestar."
-              tagline="Agenda"
-              items={events.map((event) => ({
-                title: event.data.title,
-                description: `${new Date(event.data.eventDate).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })} <br> ${event.body}`,
-                icon: 'tabler:calendar-event',
-              }))}
-              classes={{ container: 'p-0' }}
-            />
-          </div>
-          <div class="hidden lg:block">
-            <AnimatedIllustration type="group-therapy" class="w-full max-w-md mx-auto" />
-          </div>
+    <section id="eventos" class="relative py-16 overflow-hidden">
+      <!-- Background Illustration -->
+      <div class="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none">
+        <AnimatedIllustration type="group-therapy" class="w-full max-w-4xl" />
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl mx-auto text-center">
+          <Features2
+            title="Próximos Eventos"
+            subtitle="Talleres, pláticas y actividades diseñadas para tu crecimiento y bienestar."
+            tagline="Agenda"
+            items={events.map((event) => ({
+              title: event.data.title,
+              description: `${new Date(event.data.eventDate).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })} <br> ${event.body}`,
+              icon: 'tabler:calendar-event',
+            }))}
+            classes={{ container: 'p-0' }}
+          />
         </div>
       </div>
     </section>
@@ -114,30 +114,37 @@ const events = await getCollection('events');
   />
 
   <!-- Detailed Sections -->
-  <div class="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto px-4 sm:px-6">
-    <Content
-      id="psicologia-detalle"
-      tagline="Detalle del Servicio"
-      title="Psicología Clínica"
-      items={[
-        { title: 'Terapia Individual', description: 'Atención personalizada para adultos y jóvenes.' },
-        { title: 'Terapia de Pareja', description: 'Espacio para mejorar la comunicación y el vínculo.' },
-        { title: 'Manejo de Emociones', description: 'Especialistas en estrés, depresión y ansiedad.' },
-      ]}
-      image={{ src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=2070', alt: 'Psicologia' }}
-    >
-      <Fragment slot="content">
-        <p class="mb-4">Nuestro enfoque empático te ayudará a encontrar las herramientas necesarias para tu equilibrio emocional.</p>
-        <div class="flex flex-col sm:flex-row gap-4 mb-6">
-          <a href="https://cal.com/aepi/psicologia" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
-        </div>
-      </Fragment>
-    </Content>
-    <div class="flex flex-col gap-8">
-      <AnimatedIllustration type="psychologist" class="w-full max-w-xs mx-auto" />
-      <AnimatedIllustration type="marriage-counseling" class="w-full max-w-xs mx-auto" />
+  <section class="relative py-16 overflow-hidden">
+    <!-- Background Illustrations -->
+    <div class="absolute top-0 left-0 w-1/2 h-full z-0 opacity-10 pointer-events-none transform -translate-x-1/4">
+      <AnimatedIllustration type="psychologist" class="w-full h-full" />
     </div>
-  </div>
+    <div class="absolute top-0 right-0 w-1/2 h-full z-0 opacity-10 pointer-events-none transform translate-x-1/4">
+      <AnimatedIllustration type="marriage-counseling" class="w-full h-full" />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+      <Content
+        id="psicologia-detalle"
+        tagline="Detalle del Servicio"
+        title="Psicología Clínica"
+        items={[
+          { title: 'Terapia Individual', description: 'Atención personalizada para adultos y jóvenes.' },
+          { title: 'Terapia de Pareja', description: 'Espacio para mejorar la comunicación y el vínculo.' },
+          { title: 'Manejo de Emociones', description: 'Especialistas en estrés, depresión y ansiedad.' },
+        ]}
+        image={{ src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=2070', alt: 'Psicologia' }}
+        classes={{ container: 'bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-sm border border-pink-50' }}
+      >
+        <Fragment slot="content">
+          <p class="mb-4">Nuestro enfoque empático te ayudará a encontrar las herramientas necesarias para tu equilibrio emocional.</p>
+          <div class="flex flex-col sm:flex-row gap-4 mb-6">
+            <a href="https://cal.com/aepi/psicologia" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
+          </div>
+        </Fragment>
+      </Content>
+    </div>
+  </section>
 
   <!-- Team Section (Dynamic) -->
   <Features2
@@ -309,48 +316,6 @@ const events = await getCollection('events');
     <Fragment slot="subtitle">Agenda tu primera sesión y comienza tu camino al bienestar.</Fragment>
   </CallToAction>
 
-  <!-- Floating Social Buttons -->
-  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-center animate__animated animate__bounceInUp">
-    <!-- Instagram -->
-    <a
-      href="https://www.instagram.com/contagiandobienestar"
-      target="_blank"
-      class="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
-      aria-label="Instagram"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
-        <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-        <path d="M16.5 7.5l0 .01"></path>
-      </svg>
-    </a>
-    <!-- Facebook -->
-    <a
-      href="https://www.facebook.com/aepi.sociedad"
-      target="_blank"
-      class="bg-[#1877F2] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
-      aria-label="Facebook"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
-      </svg>
-    </a>
-    <!-- WhatsApp -->
-    <a
-      href={`https://wa.me/${whatsappClinicNumber}`}
-      target="_blank"
-      class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
-      aria-label="WhatsApp"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
-        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path>
-      </svg>
-    </a>
-  </div>
 </Layout>
 
 <style>
