@@ -10,6 +10,9 @@ const metadata = {
   title: 'AEPI - Centro Multidisciplinario | Amar y Educar con Psicología Integral',
   ignoreTitleTemplate: true,
 };
+
+const whatsappAdviceNumber = '525532005195';
+const whatsappClinicNumber = '525520381691';
 ---
 
 <Layout metadata={metadata}>
@@ -19,7 +22,7 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Agendar Cita',
-        href: 'https://wa.me/525520381691', 
+        href: `https://wa.me/${whatsappClinicNumber}`, 
         target: '_blank',
         icon: 'tabler:brand-whatsapp',
       },
@@ -29,143 +32,198 @@ const metadata = {
   >
     <Fragment slot="title">
       Amar y Educar con <br />
-      <span class="text-accent highlight animate__animated animate__fadeInDown">Psicología Integral</span> (AEPI)
+      <span class="text-accent highlight animate__animated animate__fadeInDown text-[#E91E63]">Psicología Integral</span> (AEPI)
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="animate__animated animate__fadeIn animate__delay-1s">
+      <span class="animate__animated animate__fadeIn animate__delay-1s text-gray-800">
         Un espacio multidisciplinario dedicado al bienestar emocional, desarrollo y aprendizaje de niños, adolescentes y adultos en un entorno cálido y profesional.
       </span>
     </Fragment>
   </Hero>
 
-  <!-- Main Services -->
+  <!-- Compressed Services Grid -->
   <Features
     id="servicios"
     tagline="Nuestras Especialidades"
     title="Atención Integral para tu Bienestar"
-    subtitle="Contamos con un equipo de profesionales comprometidos con tu salud y desarrollo."
+    subtitle="Haz clic en cada servicio para ver más detalles y agendar."
     classes={{
       container: 'animate__animated animate__fadeInUp',
       items: {
-        container: 'hover-scale soft-shadow bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-4xl',
+        container: 'hover-scale soft-shadow bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-4xl cursor-pointer transition-all duration-300',
       }
     }}
     items={[
       {
         title: 'Psicología Clínica',
-        description: 'Terapia individual, de pareja, manejo de estrés, depresión y ansiedad.',
+        description: 'Terapia individual, de pareja, infantil y manejo emocional. <br> <a href="#psicologia-detalle" class="text-primary font-bold mt-2 inline-block">Ver detalles »</a>',
         icon: 'tabler:brain',
       },
       {
         title: 'Nutrición',
-        description: 'Asesoría nutricional personalizada para todas las etapas de la vida.',
+        description: 'Planes personalizados para un estilo de vida saludable. <br> <a href="#nutricion-detalle" class="text-primary font-bold mt-2 inline-block">Ver detalles »</a>',
         icon: 'tabler:apple',
       },
       {
         title: 'Fisioterapia',
-        description: 'Rehabilitación, termoterapia, electroterapia y masajes terapéuticos.',
+        description: 'Rehabilitación física, masajes y prevención de lesiones. <br> <a href="#fisioterapia-detalle" class="text-primary font-bold mt-2 inline-block">Ver detalles »</a>',
         icon: 'tabler:stretching',
       },
       {
-        title: 'Terapia de Lenguaje',
-        description: 'Diagnóstico y tratamiento de trastornos de comunicación y estimulación.',
-        icon: 'tabler:message-2',
+        title: 'Desarrollo Infantil',
+        description: 'Terapia de lenguaje, estimulación y regularización. <br> <a href="#desarrollo-detalle" class="text-primary font-bold mt-2 inline-block">Ver detalles »</a>',
+        icon: 'tabler:mood-boy',
       },
     ]}
   />
 
-  <!-- Detailed Services -->
+  <!-- Detailed Sections (Hidden by default or Anchor linked) -->
+  
+  <!-- Psicología Detalle -->
   <Content
-    isReversed
-    tagline="Desarrollo Infantil"
-    title="Impulsando el Crecimiento"
+    id="psicologia-detalle"
+    tagline="Detalle del Servicio"
+    title="Psicología Clínica"
     items={[
-      {
-        title: 'Estimulación Temprana y Parental',
-        description: 'Programas diseñados para potenciar el desarrollo adecuado desde los primeros meses.',
-      },
-      {
-        title: 'Regularización Académica',
-        description: 'Apoyo especializado para superar rezagos y mejorar el rendimiento escolar.',
-      },
-      {
-        title: 'Manejo de Rezago',
-        description: 'Estrategias personalizadas para el aprendizaje y la integración.',
-      },
+      { title: 'Terapia Individual', description: 'Atención personalizada para adultos y jóvenes.' },
+      { title: 'Terapia de Pareja', description: 'Espacio para mejorar la comunicación y el vínculo.' },
+      { title: 'Manejo de Emociones', description: 'Especialistas en estrés, depresión y ansiedad.' },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=1972',
-      alt: 'Child Development AEPI',
-    }}
+    image={{ src: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=2070', alt: 'Psicologia' }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Desarrollo y Aprendizaje</h3>
-      <p>Nos enfocamos en brindar las herramientas necesarias para que cada niño alcance su máximo potencial.</p>
+      <p class="mb-4">Nuestro enfoque empático te ayudará a encontrar las herramientas necesarias para tu equilibrio emocional.</p>
+      <a href="https://cal.com/aepi/psicologia" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
     </Fragment>
   </Content>
 
-  <!-- Additional Services -->
+  <!-- Nutrición Detalle -->
+  <Content
+    isReversed
+    id="nutricion-detalle"
+    tagline="Detalle del Servicio"
+    title="Nutrición Integral"
+    items={[
+      { title: 'Planes Personalizados', description: 'Dietas adaptadas a tus necesidades y objetivos.' },
+      { title: 'Educación Alimentaria', description: 'Aprende a comer de manera equilibrada y sostenible.' },
+    ]}
+    image={{ src: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=2070', alt: 'Nutricion' }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">Mejora tu salud desde adentro con la guía de nuestros expertos nutricionistas.</p>
+      <a href="https://cal.com/aepi/nutricion" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
+    </Fragment>
+  </Content>
+
+  <!-- Fisioterapia Detalle -->
+  <Content
+    id="fisioterapia-detalle"
+    tagline="Detalle del Servicio"
+    title="Fisioterapia y Rehabilitación"
+    items={[
+      { title: 'Termo y Electroterapia', description: 'Tecnología aplicada a la recuperación muscular.' },
+      { title: 'Masajes Terapéuticos', description: 'Técnicas manuales para aliviar tensión y dolor.' },
+      { title: 'Prevención de Lesiones', description: 'Ejercicios y consejos para cuidar tu cuerpo.' },
+    ]}
+    image={{ src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=2070', alt: 'Fisioterapia' }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">Recupera tu movilidad y bienestar físico con atención personalizada.</p>
+      <a href="https://cal.com/aepi/fisioterapia" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
+    </Fragment>
+  </Content>
+
+  <!-- Desarrollo Infantil Detalle -->
+  <Content
+    isReversed
+    id="desarrollo-detalle"
+    tagline="Detalle del Servicio"
+    title="Desarrollo y Aprendizaje"
+    items={[
+      { title: 'Terapia de Lenguaje', description: 'Estimulación y corrección de trastornos del habla.' },
+      { title: 'Estimulación Temprana y Parental', description: 'Potencia el desarrollo de tu bebé desde el inicio.' },
+      { title: 'Regularización Académica', description: 'Apoyo para superar retos escolares y rezago.' },
+    ]}
+    image={{ src: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=1972', alt: 'Child Development' }}
+  >
+    <Fragment slot="content">
+      <p class="mb-4">Brindamos las mejores estrategias para el crecimiento integral de los más pequeños.</p>
+      <a href="https://cal.com/aepi/desarrollo" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
+    </Fragment>
+  </Content>
+
+  <!-- Additional Services (Third Party & Advice) -->
   <Features2
-    title="Servicios Complementarios"
-    subtitle="Soluciones integrales que van más allá de la clínica."
-    tagline="Más que salud"
+    title="Servicios Adicionales y Asesoría"
+    subtitle="Expertos a tu disposición para necesidades legales, fiscales y digitales."
+    tagline="Servicios Especializados"
     classes={{
-      container: 'animate__animated animate__fadeInUp',
+      container: 'animate__animated animate__fadeInUp bg-white/50 p-8 rounded-4xl',
       items: {
-        container: 'hover-scale soft-shadow bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-4xl',
+        container: 'hover-scale soft-shadow bg-white p-6 rounded-4xl border border-pink-100',
       }
     }}
     items={[
       {
+        title: 'Desarrollo Web',
+        description: 'Potencia tu presencia digital.',
+        icon: 'tabler:device-laptop',
+        callToAction: {
+          text: 'Contactar Asesor',
+          href: `https://wa.me/${whatsappAdviceNumber}`,
+          target: '_blank',
+        }
+      },
+      {
         title: 'Asesoría Jurídica',
-        description: 'Contamos con expertos para brindarte la orientación legal que necesites.',
+        description: 'Orientación legal profesional.',
         icon: 'tabler:gavel',
+        callToAction: {
+          text: 'Contactar Asesor',
+          href: `https://wa.me/${whatsappAdviceNumber}`,
+          target: '_blank',
+        }
       },
       {
         title: 'Asesoría Fiscal',
-        description: 'Gestión y consultoría para tus trámites y obligaciones fiscales.',
+        description: 'Gestión y consultoría de impuestos.',
         icon: 'tabler:receipt-tax',
-      },
-      {
-        title: 'Desarrollo Web',
-        description: 'Creamos soluciones digitales para potenciar tu presencia en línea.',
-        icon: 'tabler:device-laptop',
+        callToAction: {
+          text: 'Contactar Asesor',
+          href: `https://wa.me/${whatsappAdviceNumber}`,
+          target: '_blank',
+        }
       },
       {
         title: 'Enfermería y Sueroterapia',
-        description: 'Servicios de salud a domicilio a través de ali-com.vercel.app',
+        description: 'Salud a domicilio con ali-com.',
         icon: 'tabler:first-aid-kit',
+        callToAction: {
+          text: 'Ver sitio oficial',
+          href: 'https://ali-com.vercel.app/',
+          target: '_blank',
+        }
       },
     ]}
   />
 
-  <!-- Location & Contact -->
+  <!-- Location Section -->
   <Features2
     id="ubicacion"
     title="¿Dónde encontrarnos?"
-    subtitle="Visítanos en nuestras instalaciones en Nezahualcóyotl."
-    tagline="Ubicación y Contacto"
+    subtitle="C. Escondida 73, La Perla, 57820 Cdad. Nezahualcóyotl, Méx."
+    tagline="Ubicación"
     items={[
       {
-        title: 'Dirección Clínica',
-        description: 'C. Escondida 73, La Perla, 57820 Cdad. Nezahualcóyotl, Méx.',
-        icon: 'tabler:map-pin',
-      },
-      {
         title: 'Contacto Directo',
-        description: 'Psic. Ana Lilia Ortiz: +52 55 8706 8246 <br> Clínica: +52 55 2038 1691',
+        description: `Psic. Ana Lilia Ortiz: +52 55 8706 8246 <br> Clínica: +52 55 2038 1691`,
         icon: 'tabler:phone',
       },
       {
-        title: 'Correo Electrónico',
-        description: 'aepi.sociedad@gmail.com',
-        icon: 'tabler:mail',
-      },
-      {
-        title: 'Redes Sociales',
-        description: 'FB: aepi.sociedad <br> IG: @contagiandobienestar',
-        icon: 'tabler:brand-instagram',
+        title: 'Horarios',
+        description: 'Lunes a Viernes: 9:00 - 19:00 <br> Sábados: previa cita',
+        icon: 'tabler:clock',
       },
     ]}
   />
@@ -175,23 +233,23 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Contactar por WhatsApp',
-        href: 'https://wa.me/525520381691',
+        href: `https://wa.me/${whatsappClinicNumber}`,
         target: '_blank',
         icon: 'tabler:brand-whatsapp',
       },
     ]}
   >
     <Fragment slot="title">¿Listo para comenzar?</Fragment>
-    <Fragment slot="subtitle">Agenda tu cita hoy mismo y comienza tu camino hacia el bienestar integral.</Fragment>
+    <Fragment slot="subtitle">Agenda tu primera sesión y comienza tu camino al bienestar.</Fragment>
   </CallToAction>
 
   <!-- WhatsApp Floating Button -->
-  <div class="fixed bottom-6 right-6 z-50 animate__animated animate__bounceInUp animate__delay-2s">
+  <div class="fixed bottom-6 right-6 z-50 animate__animated animate__bounceInUp">
     <a
-      href="https://wa.me/525520381691"
+      href={`https://wa.me/${whatsappClinicNumber}`}
       target="_blank"
       class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center"
-      aria-label="Contactar por WhatsApp"
+      aria-label="WhatsApp"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -203,6 +261,9 @@ const metadata = {
 </Layout>
 
 <style>
+  html {
+    scroll-behavior: smooth;
+  }
   .highlight {
     position: relative;
     z-index: 1;
@@ -210,11 +271,11 @@ const metadata = {
   .highlight::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     width: 100%;
     height: 30%;
-    background-color: rgba(233, 30, 99, 0.2);
+    background-color: rgba(233, 30, 99, 0.1);
     z-index: -1;
     border-radius: 4px;
   }
