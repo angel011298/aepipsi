@@ -2,8 +2,9 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro'; // ESTA ES LA LÍNEA QUE FALTABA
+import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
   title: 'AEPI - Centro Multidisciplinario | Amar y Educar con Psicología Integral',
@@ -12,96 +13,209 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <!-- Hero Section -->
   <Hero
     actions={[
       {
         variant: 'primary',
-        text: 'Agendar Cita (WhatsApp)',
-        href: 'https://wa.me/521XXXXXXXXXX', 
+        text: 'Agendar Cita',
+        href: 'https://wa.me/525520381691', 
         target: '_blank',
         icon: 'tabler:brand-whatsapp',
       },
-      { text: 'Nuestros Servicios', href: '#servicios' },
+      { text: 'Ver Servicios', href: '#servicios' },
     ]}
-    image={{ src: '~/assets/images/image-team.jpeg', alt: 'Equipo Multidisciplinario AEPI' }}
+    image={{ src: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2070', alt: 'AEPI Clinic' }}
   >
     <Fragment slot="title">
       Amar y Educar con <br />
-      <span class="text-accent dark:text-white highlight">Psicología Integral</span> (AEPI)
+      <span class="text-accent highlight animate__animated animate__fadeInDown">Psicología Integral</span> (AEPI)
     </Fragment>
 
     <Fragment slot="subtitle">
-      Un espacio dedicado al bienestar emocional, desarrollo y aprendizaje de niños, adolescentes y adultos en un entorno cálido y profesional.
+      <span class="animate__animated animate__fadeIn animate__delay-1s">
+        Un espacio multidisciplinario dedicado al bienestar emocional, desarrollo y aprendizaje de niños, adolescentes y adultos en un entorno cálido y profesional.
+      </span>
     </Fragment>
   </Hero>
 
+  <!-- Main Services -->
   <Features
     id="servicios"
-    tagline="Especialidades"
-    title="¿Cómo podemos ayudarte?"
-    subtitle="Atención integral con un equipo multidisciplinario capacitado."
+    tagline="Nuestras Especialidades"
+    title="Atención Integral para tu Bienestar"
+    subtitle="Contamos con un equipo de profesionales comprometidos con tu salud y desarrollo."
+    classes={{
+      container: 'animate__animated animate__fadeInUp',
+      items: {
+        container: 'hover-scale soft-shadow bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-4xl',
+      }
+    }}
     items={[
       {
         title: 'Psicología Clínica',
-        description: 'Terapia individual para todas las edades, enfoque empático y soluciones prácticas.',
-        icon: 'tabler:heart-handshake',
-      },
-      {
-        title: 'Terapia de Lenguaje',
-        description: 'Diagnóstico y tratamiento de trastornos de comunicación.',
-        icon: 'tabler:message-circle-2',
+        description: 'Terapia individual, de pareja, manejo de estrés, depresión y ansiedad.',
+        icon: 'tabler:brain',
       },
       {
         title: 'Nutrición',
-        description: 'Planes alimenticios personalizados para un desarrollo y vida saludable.',
+        description: 'Asesoría nutricional personalizada para todas las etapas de la vida.',
         icon: 'tabler:apple',
       },
       {
-        title: 'Fisioterapia y Rehabilitación',
-        description: 'Termoterapia, electroterapia y masajes terapéuticos.',
-        icon: 'tabler:activity',
+        title: 'Fisioterapia',
+        description: 'Rehabilitación, termoterapia, electroterapia y masajes terapéuticos.',
+        icon: 'tabler:stretching',
+      },
+      {
+        title: 'Terapia de Lenguaje',
+        description: 'Diagnóstico y tratamiento de trastornos de comunicación y estimulación.',
+        icon: 'tabler:message-2',
       },
     ]}
   />
 
+  <!-- Detailed Services -->
   <Content
-    id="equipo"
     isReversed
-    tagline="Nuestro Equipo"
-    title="Profesionales comprometidos contigo"
+    tagline="Desarrollo Infantil"
+    title="Impulsando el Crecimiento"
     items={[
       {
-        title: 'Especialidades:',
-        description: 'Estimulación Temprana, Terapia de Lenguaje y Regularización Escolar.',
+        title: 'Estimulación Temprana y Parental',
+        description: 'Programas diseñados para potenciar el desarrollo adecuado desde los primeros meses.',
+      },
+      {
+        title: 'Regularización Académica',
+        description: 'Apoyo especializado para superar rezagos y mejorar el rendimiento escolar.',
+      },
+      {
+        title: 'Manejo de Rezago',
+        description: 'Estrategias personalizadas para el aprendizaje y la integración.',
       },
     ]}
     image={{
-      src: '~/assets/images/image_ana-laura.jpeg',
-      alt: 'Lic. Ana Laura - AEPI',
+      src: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=1972',
+      alt: 'Child Development AEPI',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Lic. Ana Laura</h3>
-      <p>Liderando la atención en desarrollo infantil y aprendizaje.</p>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Desarrollo y Aprendizaje</h3>
+      <p>Nos enfocamos en brindar las herramientas necesarias para que cada niño alcance su máximo potencial.</p>
     </Fragment>
   </Content>
 
+  <!-- Additional Services -->
   <Features2
-    title="¿Dónde encontrarnos?"
-    subtitle="Visítanos en nuestras instalaciones o contáctanos para una cita."
-    tagline="Ubicación"
+    title="Servicios Complementarios"
+    subtitle="Soluciones integrales que van más allá de la clínica."
+    tagline="Más que salud"
+    classes={{
+      container: 'animate__animated animate__fadeInUp',
+      items: {
+        container: 'hover-scale soft-shadow bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-4xl',
+      }
+    }}
     items={[
       {
-        title: 'Dirección',
-        description: 'Dirección real de AEPI aquí',
-        icon: 'tabler:map-pin',
+        title: 'Asesoría Jurídica',
+        description: 'Contamos con expertos para brindarte la orientación legal que necesites.',
+        icon: 'tabler:gavel',
       },
       {
-        title: 'Horarios',
-        description: 'Lunes a Viernes: 9am - 7pm',
-        icon: 'tabler:clock',
+        title: 'Asesoría Fiscal',
+        description: 'Gestión y consultoría para tus trámites y obligaciones fiscales.',
+        icon: 'tabler:receipt-tax',
+      },
+      {
+        title: 'Desarrollo Web',
+        description: 'Creamos soluciones digitales para potenciar tu presencia en línea.',
+        icon: 'tabler:device-laptop',
+      },
+      {
+        title: 'Enfermería y Sueroterapia',
+        description: 'Servicios de salud a domicilio a través de ali-com.vercel.app',
+        icon: 'tabler:first-aid-kit',
       },
     ]}
   />
 
+  <!-- Location & Contact -->
+  <Features2
+    id="ubicacion"
+    title="¿Dónde encontrarnos?"
+    subtitle="Visítanos en nuestras instalaciones en Nezahualcóyotl."
+    tagline="Ubicación y Contacto"
+    items={[
+      {
+        title: 'Dirección Clínica',
+        description: 'C. Escondida 73, La Perla, 57820 Cdad. Nezahualcóyotl, Méx.',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Contacto Directo',
+        description: 'Psic. Ana Lilia Ortiz: +52 55 8706 8246 <br> Clínica: +52 55 2038 1691',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Correo Electrónico',
+        description: 'aepi.sociedad@gmail.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Redes Sociales',
+        description: 'FB: aepi.sociedad <br> IG: @contagiandobienestar',
+        icon: 'tabler:brand-instagram',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contactar por WhatsApp',
+        href: 'https://wa.me/525520381691',
+        target: '_blank',
+        icon: 'tabler:brand-whatsapp',
+      },
+    ]}
+  >
+    <Fragment slot="title">¿Listo para comenzar?</Fragment>
+    <Fragment slot="subtitle">Agenda tu cita hoy mismo y comienza tu camino hacia el bienestar integral.</Fragment>
+  </CallToAction>
+
+  <!-- WhatsApp Floating Button -->
+  <div class="fixed bottom-6 right-6 z-50 animate__animated animate__bounceInUp animate__delay-2s">
+    <a
+      href="https://wa.me/525520381691"
+      target="_blank"
+      class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors flex items-center justify-center"
+      aria-label="Contactar por WhatsApp"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
+        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path>
+      </svg>
+    </a>
+  </div>
 </Layout>
+
+<style>
+  .highlight {
+    position: relative;
+    z-index: 1;
+  }
+  .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: rgba(233, 30, 99, 0.2);
+    z-index: -1;
+    border-radius: 4px;
+  }
+</style>

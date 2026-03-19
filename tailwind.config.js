@@ -19,6 +19,9 @@ export default {
         heading: ['var(--aw-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
       },
 
+      borderRadius: {
+        '4xl': '2rem', // 32px
+      },
       animation: {
         fade: 'fadeInUp 1s both',
       },

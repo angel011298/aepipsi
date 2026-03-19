@@ -7,22 +7,21 @@
     /* Rosa vibrante del corazón de AEPI */
     --aw-color-primary: #E91E63;
     /* Morado profesional de las letras del logo */
-    --aw-color-secondary: #8E24AA;
-    /* Azul claro de las tarjetas de servicios */
-    --aw-color-accent: #81D4FA;
+    --aw-color-secondary: #6B46C1;
+    /* Rosa claro para acentos */
+    --aw-color-accent: #E91E63;
 
     /* Colores de texto y fondo */
     --aw-color-text-page: rgb(31 41 55);
     --aw-color-text-muted: rgb(107 114 128);
     --aw-color-bg-page: rgb(255 255 255);
     --aw-color-bg-page-dark: rgb(252 240 242);
-    /* Un toque rosado muy tenue para fondos alternos */
   }
 
   .dark {
-    --aw-color-primary: #F06292;
-    --aw-color-secondary: #BA68C8;
-    --aw-color-accent: #B3E5FC;
+    --aw-color-primary: #E91E63;
+    --aw-color-secondary: #6B46C1;
+    --aw-color-accent: #E91E63;
     --aw-color-text-page: rgb(229 231 235);
     --aw-color-text-muted: rgb(156 163 175);
     --aw-color-bg-page: rgb(15 23 42);
@@ -48,6 +47,23 @@
 
   .text-muted {
     color: var(--aw-color-text-muted);
+  }
+
+  /* Global rounded corners for cards and images */
+  .rounded-card {
+    @apply rounded-4xl;
+  }
+
+  img {
+    @apply rounded-4xl !important;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .soft-shadow {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
   }
 }
 
