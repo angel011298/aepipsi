@@ -33,9 +33,7 @@ export const footerData = {
   socialLinks: [
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/525587068246?text=Hola,%20me%20gustaría%20agendar%20una%20cita%20en%20AEPI },
+    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/521XXXXXXXXXX' },
   ],
-  footNote: `
-    © 2026 AEPI · Amar y Educar con Psicología Integral.
-  `,
+  footNote: '© 2026 AEPI · Amar y Educar con Psicología Integral. Todos los derechos reservados.',
 };
