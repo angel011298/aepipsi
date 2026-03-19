@@ -4,6 +4,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
@@ -26,18 +27,17 @@ const whatsappClinicNumber = '525520381691';
         target: '_blank',
         icon: 'tabler:brand-whatsapp',
       },
-      { text: 'Ver Servicios', href: '#servicios' },
+      { text: 'Ver Precios', href: '#precios' },
     ]}
-    image={{ src: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2070', alt: 'AEPI Clinic' }}
+    image={{ src: '~/assets/images/image_ana-laura.jpeg', alt: 'Atención Psicológica AEPI' }}
   >
     <Fragment slot="title">
-      Amar y Educar con <br />
-      <span class="text-primary highlight animate__animated animate__fadeInDown">Psicología Integral</span> (AEPI)
+      Un espacio para <span class="text-accent highlight">sanar y crecer</span>
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="animate__animated animate__fadeIn animate__delay-1s text-gray-800">
-        Un espacio multidisciplinario dedicado al bienestar emocional, desarrollo y aprendizaje de niños, adolescentes y adultos en un entorno cálido y profesional.
+        En AEPI, brindamos atención multidisciplinaria con calidez humana. Psicología, Nutrición y Desarrollo Infantil en un solo lugar.
       </span>
     </Fragment>
   </Hero>
@@ -49,7 +49,7 @@ const whatsappClinicNumber = '525520381691';
     title="Atención Integral para tu Bienestar"
     subtitle="Haz clic en cada servicio para ver más detalles y agendar."
     classes={{
-      container: 'animate__animated animate__fadeInUp',
+      container: 'animate__animated animate__fadeInUp bg-white rounded-3xl shadow-sm border border-pink-100 p-8 mb-12',
       title: 'text-secondary',
       items: {
         container: 'hover-scale soft-shadow bg-white border border-pink-100 p-6 rounded-4xl cursor-pointer transition-all duration-300',
@@ -80,9 +80,8 @@ const whatsappClinicNumber = '525520381691';
     ]}
   />
 
-  <!-- Detailed Sections (Hidden by default or Anchor linked) -->
+  <!-- Detailed Sections -->
   
-  <!-- Psicología Detalle -->
   <Content
     id="psicologia-detalle"
     tagline="Detalle del Servicio"
@@ -100,7 +99,6 @@ const whatsappClinicNumber = '525520381691';
     </Fragment>
   </Content>
 
-  <!-- Nutrición Detalle -->
   <Content
     isReversed
     id="nutricion-detalle"
@@ -118,7 +116,6 @@ const whatsappClinicNumber = '525520381691';
     </Fragment>
   </Content>
 
-  <!-- Fisioterapia Detalle -->
   <Content
     id="fisioterapia-detalle"
     tagline="Detalle del Servicio"
@@ -136,7 +133,6 @@ const whatsappClinicNumber = '525520381691';
     </Fragment>
   </Content>
 
-  <!-- Desarrollo Infantil Detalle -->
   <Content
     isReversed
     id="desarrollo-detalle"
@@ -155,13 +151,63 @@ const whatsappClinicNumber = '525520381691';
     </Fragment>
   </Content>
 
-  <!-- Additional Services (Third Party & Advice) -->
+  <!-- Pricing Section -->
+  <Pricing
+    id="precios"
+    title="Costos de Inversión en Salud"
+    subtitle="Precios competitivos y transparencia para tu tranquilidad."
+    prices={[
+      {
+        title: 'Psicología y Salud Mental',
+        subtitle: 'Terapia individual, pareja y lenguaje',
+        price: '450',
+        period: 'desde',
+        items: [
+          { description: 'Terapia Individual: $450 - $800' },
+          { description: 'Pareja: $600 - $1,200' },
+          { description: 'Lenguaje: $500 - $900' },
+          { description: 'Ansiedad/Depresión: $600 - $850' },
+        ],
+        callToAction: { text: 'Solicitar informes', href: `https://wa.me/${whatsappClinicNumber}`, target: '_blank' },
+        hasRibbon: true,
+        ribbonTitle: 'Más solicitado',
+      },
+      {
+        title: 'Nutrición y Fisioterapia',
+        subtitle: 'Bienestar físico y rehabilitación',
+        price: '400',
+        period: 'desde',
+        items: [
+          { description: 'Consulta Nutrición: $650 - $800' },
+          { description: 'Fisioterapia: $450 - $750' },
+          { description: 'Masajes Terapéuticos: $500 - $900' },
+          { description: 'Prevención: Planes desde $1,500' },
+        ],
+        callToAction: { text: 'Ver paquetes', href: `https://wa.me/${whatsappClinicNumber}`, target: '_blank' },
+      },
+      {
+        title: 'Desarrollo Infantil',
+        subtitle: 'Regularización y talleres',
+        price: '150',
+        period: 'por hora',
+        items: [
+          { description: 'Regularización: $150 - $250 /hr' },
+          { description: 'Paquetes mensuales: $1,000 - $1,800' },
+          { description: 'Estimulación Temprana: $350 - $600' },
+          { description: 'Talleres Parentales: Consultar' },
+        ],
+        callToAction: { text: 'Inscribir ahora', href: `https://wa.me/${whatsappClinicNumber}`, target: '_blank' },
+      },
+    ]}
+  />
+
   <Features2
-    title="Servicios Adicionales y Asesoría"
+    title="Servicios Profesionales Adicionales"
     subtitle="Expertos a tu disposición para necesidades legales, fiscales y digitales."
     tagline="Servicios Especializados"
+    columns={3}
     classes={{
-      container: 'animate__animated animate__fadeInUp bg-white/50 p-8 rounded-4xl',
+      container: 'animate__animated animate__fadeInUp bg-white/50 p-8 rounded-4xl mt-12',
       title: 'text-secondary',
       items: {
         container: 'hover-scale soft-shadow bg-white p-6 rounded-4xl border border-pink-100',
@@ -170,18 +216,8 @@ const whatsappClinicNumber = '525520381691';
     }}
     items={[
       {
-        title: 'Desarrollo Web',
-        description: 'Potencia tu presencia digital.',
-        icon: 'tabler:device-laptop',
-        callToAction: {
-          text: 'Contactar Asesor',
-          href: `https://wa.me/${whatsappAdviceNumber}`,
-          target: '_blank',
-        }
-      },
-      {
         title: 'Asesoría Jurídica',
-        description: 'Orientación legal profesional.',
+        description: 'Consulta inicial: $500 - $1,500 MXN.',
         icon: 'tabler:gavel',
         callToAction: {
           text: 'Contactar Asesor',
@@ -191,8 +227,18 @@ const whatsappClinicNumber = '525520381691';
       },
       {
         title: 'Asesoría Fiscal',
-        description: 'Gestión y consultoría de impuestos.',
-        icon: 'tabler:receipt-tax',
+        description: 'Honorarios mensuales: $800 - $2,500 MXN.',
+        icon: 'tabler:calculator',
+        callToAction: {
+          text: 'Contactar Asesor',
+          href: `https://wa.me/${whatsappAdviceNumber}`,
+          target: '_blank',
+        }
+      },
+      {
+        title: 'Desarrollo Web',
+        description: 'Landings desde $2,200. Sitios Corporativos desde $8,000.',
+        icon: 'tabler:code',
         callToAction: {
           text: 'Contactar Asesor',
           href: `https://wa.me/${whatsappAdviceNumber}`,
@@ -279,7 +325,7 @@ const whatsappClinicNumber = '525520381691';
     left: 0;
     width: 100%;
     height: 30%;
-    background-color: rgba(233, 30, 99, 0.1);
+    background-color: rgba(168, 85, 247, 0.2);
     z-index: -1;
     border-radius: 4px;
   }
