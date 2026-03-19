@@ -32,7 +32,7 @@ const whatsappClinicNumber = '525520381691';
   >
     <Fragment slot="title">
       Amar y Educar con <br />
-      <span class="text-accent highlight animate__animated animate__fadeInDown text-[#E91E63]">Psicología Integral</span> (AEPI)
+      <span class="text-primary highlight animate__animated animate__fadeInDown">Psicología Integral</span> (AEPI)
     </Fragment>
 
     <Fragment slot="subtitle">
@@ -50,8 +50,10 @@ const whatsappClinicNumber = '525520381691';
     subtitle="Haz clic en cada servicio para ver más detalles y agendar."
     classes={{
       container: 'animate__animated animate__fadeInUp',
+      title: 'text-secondary',
       items: {
-        container: 'hover-scale soft-shadow bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-4xl cursor-pointer transition-all duration-300',
+        container: 'hover-scale soft-shadow bg-white border border-pink-100 p-6 rounded-4xl cursor-pointer transition-all duration-300',
+        title: 'text-secondary font-bold',
       }
     }}
     items={[
@@ -160,8 +162,10 @@ const whatsappClinicNumber = '525520381691';
     tagline="Servicios Especializados"
     classes={{
       container: 'animate__animated animate__fadeInUp bg-white/50 p-8 rounded-4xl',
+      title: 'text-secondary',
       items: {
         container: 'hover-scale soft-shadow bg-white p-6 rounded-4xl border border-pink-100',
+        title: 'text-secondary font-bold',
       }
     }}
     items={[
