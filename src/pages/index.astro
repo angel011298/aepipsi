@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro'; // ESTA ES LA LÍNEA QUE FALTABA
 import Content from '~/components/widgets/Content.astro';
 
 const metadata = {
@@ -16,7 +17,7 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Agendar Cita (WhatsApp)',
-        href: 'https://wa.me/521XXXXXXXXXX', // No olvides poner el número real aquí
+        href: 'https://wa.me/521XXXXXXXXXX', 
         target: '_blank',
         icon: 'tabler:brand-whatsapp',
       },
@@ -35,71 +36,33 @@ const metadata = {
   </Hero>
 
   <Features
-  id="servicios"
-  tagline="Nuestras Especialidades"
-  title="Atención Multidisciplinaria Integral"
-  subtitle="Un equipo de profesionales dedicados al cuidado de tu familia."
-  items={[
-    {
-      title: 'Psicología Clínica y de la Salud',
-      description: 'Atención terapéutica para niños, adolescentes y adultos.',
-      icon: 'tabler:heart-handshake',
-    },
-    {
-      title: 'Terapia y Estimulación del Lenguaje',
-      description: 'Diagnóstico y tratamiento de trastornos de comunicación.',
-      icon: 'tabler:message-circle-2',
-    },
-    {
-      title: 'Fisioterapia y Rehabilitación',
-      description: 'Incluye termoterapia, electroterapia y masajes terapéuticos.',
-      icon: 'tabler:activity',
-    },
-    {
-      title: 'Estimulación Temprana y Prenatal',
-      description: 'Acompañamiento en las etapas cruciales del desarrollo infantil.',
-      icon: 'tabler:baby-carriage',
-    },
-    {
-      title: 'Nutrición',
-      description: 'Planes alimenticios enfocados en la salud integral.',
-      icon: 'tabler:apple',
-    },
-    {
-      title: 'Regularización Escolar',
-      description: 'Apoyo académico para fortalecer el aprendizaje.',
-      icon: 'tabler:school',
-    },
-    {
-      title: 'Asesoría Jurídica',
-      description: 'Acompañamiento legal especializado.',
-      icon: 'tabler:gavel',
-    },
-  ]}
-/>
-
-<Features2
-  title="¿Dónde encontrarnos?"
-  subtitle="Visítanos en nuestras instalaciones o contáctanos para una cita."
-  tagline="Ubicación"
-  items={[
-    {
-      title: 'Dirección',
-      description: 'Escribe aquí la dirección real de la clínica AEPI.',
-      icon: 'tabler:map-pin',
-    },
-    {
-      title: 'Horarios de Atención',
-      description: 'Lunes a Viernes: 9:00 AM - 7:00 PM <br /> Sábados: 9:00 AM - 2:00 PM',
-      icon: 'tabler:clock',
-    },
-    {
-      title: 'Teléfono / WhatsApp',
-      description: '+52 1 XX XXXX XXXX',
-      icon: 'tabler:brand-whatsapp',
-    },
-  ]}
-/>
+    id="servicios"
+    tagline="Especialidades"
+    title="¿Cómo podemos ayudarte?"
+    subtitle="Atención integral con un equipo multidisciplinario capacitado."
+    items={[
+      {
+        title: 'Psicología Clínica',
+        description: 'Terapia individual para todas las edades, enfoque empático y soluciones prácticas.',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: 'Terapia de Lenguaje',
+        description: 'Diagnóstico y tratamiento de trastornos de comunicación.',
+        icon: 'tabler:message-circle-2',
+      },
+      {
+        title: 'Nutrición',
+        description: 'Planes alimenticios personalizados para un desarrollo y vida saludable.',
+        icon: 'tabler:apple',
+      },
+      {
+        title: 'Fisioterapia y Rehabilitación',
+        description: 'Termoterapia, electroterapia y masajes terapéuticos.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
 
   <Content
     id="equipo"
@@ -122,4 +85,23 @@ const metadata = {
       <p>Liderando la atención en desarrollo infantil y aprendizaje.</p>
     </Fragment>
   </Content>
+
+  <Features2
+    title="¿Dónde encontrarnos?"
+    subtitle="Visítanos en nuestras instalaciones o contáctanos para una cita."
+    tagline="Ubicación"
+    items={[
+      {
+        title: 'Dirección',
+        description: 'Dirección real de AEPI aquí',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Horarios',
+        description: 'Lunes a Viernes: 9am - 7pm',
+        icon: 'tabler:clock',
+      },
+    ]}
+  />
+
 </Layout>
