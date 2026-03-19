@@ -1,4 +1,7 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+
 interface Props {
   type: 'psychologist' | 'marriage-counseling' | 'group-therapy';
   class?: string;
@@ -6,124 +9,36 @@ interface Props {
 
 const { type, class: className } = Astro.props;
 
-// SVG Constants for the illustrations
-const illustrations = {
-  psychologist: {
-    viewBox: "0 0 200 200",
-    content: `
-      <circle cx="100" cy="150" r="40" fill="#fce7f3" class="body-part" />
-      <circle cx="100" cy="80" r="30" fill="#fbcfe8" class="body-part" />
-      <rect x="85" y="110" width="30" height="15" fill="#f472b6" class="body-part" />
-      <path d="M70 140 Q100 120 130 140" stroke="#db2777" stroke-width="4" fill="none" class="gesture" />
-      <circle cx="150" cy="60" r="15" fill="#ddd6fe" class="thought-bubble-1" />
-      <circle cx="170" cy="40" r="20" fill="#c4b5fd" class="thought-bubble-2" />
-    `
-  },
-  'marriage-counseling': {
-    viewBox: "0 0 200 200",
-    content: `
-      <circle cx="60" cy="150" r="35" fill="#dbeafe" class="person-1" />
-      <circle cx="140" cy="150" r="35" fill="#fef3c7" class="person-2" />
-      <path d="M80 140 Q100 120 120 140" stroke="#3b82f6" stroke-width="3" fill="none" class="connection" />
-      <path d="M100 80 L110 90 L100 100 L90 90 Z" fill="#ef4444" class="heart" />
-    `
-  },
-  'group-therapy': {
-    viewBox: "0 0 240 200",
-    content: `
-      <circle cx="60" cy="160" r="25" fill="#dcfce7" class="member-1" />
-      <circle cx="120" cy="160" r="25" fill="#fae8ff" class="member-2" />
-      <circle cx="180" cy="160" r="25" fill="#f3f4f6" class="member-3" />
-      <path d="M60 120 Q120 80 180 120" stroke="#10b981" stroke-width="2" stroke-dasharray="5,5" fill="none" class="circle-link" />
-    `
-  }
-};
+// Path to assets
+const assetsDir = path.resolve('./src/assets/images');
+const svgPath = path.join(assetsDir, `${type}-not-css.svg`);
+const cssPath = path.join(assetsDir, `${type}-styles.css`);
 
-const illustration = illustrations[type];
+// Read contents
+let svgContent = '';
+let cssContent = '';
+
+try {
+  svgContent = fs.readFileSync(svgPath, 'utf-8');
+  cssContent = fs.readFileSync(cssPath, 'utf-8');
+} catch (error) {
+  console.error(`Error loading assets for ${type}:`, error);
+}
+
+// Clean up SVG content (remove class="animated" if present to control it with JS)
+svgContent = svgContent.replace('class="animated"', '').replace('<svg ', '<svg class="animable-svg" ');
 ---
 
 <div class={`illustration-container ${type} ${className || ''}`} data-animate>
-  <svg 
-    viewBox={illustration.viewBox} 
-    xmlns="http://www.w3.org/2000/svg"
-    class="w-full h-auto"
-  >
-    <Fragment set:html={illustration.content} />
-  </svg>
+  <style is:inline set:html={cssContent} />
+  <Fragment set:html={svgContent} />
 </div>
 
 <style is:global>
   .illustration-container svg {
+    width: 100%;
+    height: auto;
     overflow: visible;
-  }
-
-  .illustration-container .body-part,
-  .illustration-container .person-1,
-  .illustration-container .person-2,
-  .illustration-container .member-1,
-  .illustration-container .member-2,
-  .illustration-container .member-3 {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  .illustration-container .gesture,
-  .illustration-container .connection,
-  .illustration-container .circle-link {
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    transition: all 1.5s ease-in-out;
-  }
-
-  .illustration-container .thought-bubble-1,
-  .illustration-container .thought-bubble-2,
-  .illustration-container .heart {
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  /* Animated states */
-  .illustration-container.animated .body-part,
-  .illustration-container.animated .person-1,
-  .illustration-container.animated .person-2,
-  .illustration-container.animated .member-1,
-  .illustration-container.animated .member-2,
-  .illustration-container.animated .member-3 {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .illustration-container.animated .gesture,
-  .illustration-container.animated .connection,
-  .illustration-container.animated .circle-link {
-    stroke-dashoffset: 0;
-  }
-
-  .illustration-container.animated .thought-bubble-1 {
-    opacity: 1;
-    transform: scale(1);
-    transition-delay: 0.6s;
-  }
-
-  .illustration-container.animated .thought-bubble-2 {
-    opacity: 1;
-    transform: scale(1);
-    transition-delay: 0.8s;
-  }
-
-  .illustration-container.animated .heart {
-    opacity: 1;
-    transform: scale(1.5);
-    transition-delay: 1s;
-    animation: pulse 2s infinite 1.5s;
-  }
-
-  @keyframes pulse {
-    0% { transform: scale(1.5); }
-    50% { transform: scale(1.8); }
-    100% { transform: scale(1.5); }
   }
 </style>
 
@@ -131,14 +46,18 @@ const illustration = illustrations[type];
   const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.3
+    threshold: 0.2
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('animated');
-        observer.unobserve(entry.target);
+        const container = entry.target;
+        const svg = container.querySelector('svg');
+        if (svg) {
+          svg.classList.add('animated');
+        }
+        observer.unobserve(container);
       }
     });
   }, observerOptions);
@@ -147,3 +66,4 @@ const illustration = illustrations[type];
     observer.observe(el);
   });
 </script>
+
