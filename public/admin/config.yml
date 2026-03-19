@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: angel011298/aepipsi
+  name: git-gateway
   branch: main
 
 media_folder: "public/assets/images/cms"
