@@ -1,8 +1,6 @@
 ---
 import '~/assets/styles/tailwind.css';
 
-import { I18N } from 'astrowind:config';
-
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
 import CustomStyles from '~/components/CustomStyles.astro';
@@ -11,6 +9,7 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import Doodles from '~/components/Doodles.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -22,11 +21,10 @@ export interface Props {
 }
 
 const { metadata = {} } = Astro.props;
-const { language, textDirection } = I18N;
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang="es" class="light 2xl:text-[20px]">
   <head>
     <CommonMeta />
     <Favicons />
@@ -44,19 +42,12 @@ const { language, textDirection } = I18N;
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight overflow-x-hidden">
-    <!-- Animated Background Elements -->
-    <div class="fixed inset-0 -z-10 pointer-events-none opacity-10 overflow-hidden">
-      <div class="absolute top-[10%] left-[5%] animate-float-slow">
-        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M40 100C40 66.8629 66.8629 40 100 40C133.137 40 160 66.8629 160 100C160 133.137 133.137 160 100 160C66.8629 160 40 133.137 40 100Z" stroke="currentColor" stroke-width="2" stroke-dasharray="10 10" class="text-pink-300"/>
-        </svg>
-      </div>
-      <div class="absolute bottom-[20%] right-[10%] animate-float-reverse">
-        <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="75" cy="75" r="70" stroke="currentColor" stroke-width="2" class="text-purple-300 opacity-50"/>
-          <path d="M75 25V125M25 75H125" stroke="currentColor" stroke-width="2" class="text-purple-400"/>
-        </svg>
-      </div>
+    <!-- Animated Background Doodles -->
+    <div class="fixed inset-0 -z-10 pointer-events-none opacity-[0.07] overflow-hidden">
+      <Doodles type="meditation" class="absolute top-[15%] left-[5%] w-64 h-64 animate-float-slow text-secondary" />
+      <Doodles type="stretching" class="absolute bottom-[25%] right-[8%] w-72 h-72 animate-float-reverse text-primary" />
+      <Doodles type="nutrition" class="absolute top-[40%] right-[3%] w-56 h-56 animate-float-slow text-accent" />
+      <Doodles type="child" class="absolute bottom-[10%] left-[10%] w-60 h-60 animate-float-reverse text-secondary" />
     </div>
 
     <slot />
@@ -99,11 +90,11 @@ const { language, textDirection } = I18N;
 
       @keyframes float-slow {
         0%, 100% { transform: translateY(0) rotate(0); }
-        50% { transform: translateY(-40px) rotate(10deg); }
+        50% { transform: translateY(-40px) rotate(8deg); }
       }
       @keyframes float-reverse {
         0%, 100% { transform: translateY(0) rotate(0); }
-        50% { transform: translateY(40px) rotate(-10deg); }
+        50% { transform: translateY(40px) rotate(-8deg); }
       }
       .animate-float-slow { animation: float-slow 12s ease-in-out infinite; }
       .animate-float-reverse { animation: float-reverse 15s ease-in-out infinite; }
