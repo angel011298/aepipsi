@@ -6,18 +6,14 @@ const metadataDefinition = () =>
     .object({
       title: z.string().optional(),
       ignoreTitleTemplate: z.boolean().optional(),
-
       canonical: z.string().url().optional(),
-
       robots: z
         .object({
           index: z.boolean().optional(),
           follow: z.boolean().optional(),
         })
         .optional(),
-
       description: z.string().optional(),
-
       openGraph: z
         .object({
           url: z.string().optional(),
@@ -35,7 +31,6 @@ const metadataDefinition = () =>
           type: z.string().optional(),
         })
         .optional(),
-
       twitter: z
         .object({
           handle: z.string().optional(),
@@ -47,24 +42,40 @@ const metadataDefinition = () =>
     .optional();
 
 const postCollection = defineCollection({
-  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/post' }),
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/content/post' }),
   schema: z.object({
-    publishDate: z.date().optional(),
-    updateDate: z.date().optional(),
+    publishDate: z.coerce.date().optional(),
+    updateDate: z.coerce.date().optional(),
     draft: z.boolean().optional(),
-
     title: z.string(),
     excerpt: z.string().optional(),
     image: z.string().optional(),
-
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
     author: z.string().optional(),
-
     metadata: metadataDefinition(),
+  }),
+});
+
+const teamCollection = defineCollection({
+  loader: glob({ pattern: ['*.md'], base: 'src/content/team' }),
+  schema: z.object({
+    title: z.string(),
+    role: z.string(),
+    image: z.string().optional(),
+  }),
+});
+
+const eventCollection = defineCollection({
+  loader: glob({ pattern: ['*.md'], base: 'src/content/events' }),
+  schema: z.object({
+    title: z.string(),
+    eventDate: z.coerce.date(),
   }),
 });
 
 export const collections = {
   post: postCollection,
+  team: teamCollection,
+  events: eventCollection,
 };

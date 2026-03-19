@@ -2,102 +2,39 @@
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
 
 const metadata = {
   title: 'Artículos de Bienestar | AEPI',
 };
 
-const articulos = [
-  {
-    title: 'Psicología Clínica y Estrategias de Intervención',
-    icon: 'tabler:brain',
-    content: `La salud mental es reconocida hoy como una piedra angular de la calidad de vida, definida no solo por la ausencia de patologías, sino por la capacidad de gestionar las demandas existenciales con equilibrio y propósito. La psicoterapia se erige como el mecanismo principal para el cambio de comportamiento a largo plazo y la sanación de heridas fundamentales.
-    <br><br>
-    <strong>Terapia Individual:</strong> Un proceso dialéctico entre un profesional y un consultante para desentrañar patrones de pensamiento y conducta.
-    <ul>
-      <li><strong>Conciencia de sí mismo:</strong> Identificar patrones y creencias fundamentales.</li>
-      <li><strong>Habilidades de Comunicación:</strong> Expresar necesidades de forma asertiva.</li>
-      <li><strong>Resolución de Conflictos:</strong> Establecer límites saludables.</li>
-    </ul>`
-  },
-  {
-    title: 'Terapia de Pareja y Reconstrucción del Vínculo',
-    icon: 'tabler:heart-handshake',
-    content: `La terapia de pareja se activa ante crisis comunicativas o conflictos irresueltos. El enfoque busca transformar la relación en un sistema de apoyo sólido. Las técnicas se centran en la identificación de patrones ineficaces como las críticas constantes o el desprecio, sustituyéndolos por validación emocional y empatía.`
-  },
-  {
-    title: 'Manejo de Ansiedad y Depresión',
-    icon: 'tabler:mood-sad',
-    content: `La ansiedad se aborda mediante la Terapia Cognitivo-Conductual (TCC), identificando pensamientos automáticos negativos. 
-    <br><br>
-    <strong>Depresión:</strong> Afecta al 5.7% de los adultos a nivel mundial. El abordaje multimodal combina psicoterapia, activación conductual y, en casos necesarios, farmacología o estimulación cerebral.`
-  },
-  {
-    title: 'Estrés y Vulnerabilidad Biopsicosocial',
-    icon: 'tabler:bolt',
-    content: `El estrés excesivo compromete el sistema inmunológico. El manejo implica reconocer señales como insomnio o pérdida de memoria, e implementar técnicas de gestión del tiempo y reestructuración cognitiva para disminuir el impacto de los estresores diarios.`
-  },
-  {
-    title: 'Neurodesarrollo Infantil e Intervención Temprana',
-    icon: 'tabler:baby-carriage',
-    content: `Diferenciamos entre <strong>Atención Temprana</strong> (clínica y terapéutica para riesgos biológicos) y <strong>Estimulación Temprana</strong> (potenciación de capacidades para todo niño). Aprovechamos la plasticidad cerebral de los primeros años para establecer las bases cognitivas futuras.`
-  },
-  {
-    title: 'Terapia del Lenguaje y Estimulación Lingüística',
-    icon: 'tabler:message-circle-2',
-    content: `La comunicación es clave para el éxito social y académico. Abordamos trastornos de articulación, fluidez y voz. Monitoreamos hitos como el balbuceo (0-12 meses), primeras palabras (12-18 meses) y lenguaje gramatical (3-5 años).`
-  },
-  {
-    title: 'Pedagogía y Superación del Rezago Académico',
-    icon: 'tabler:school',
-    content: `El rezago académico es multifactorial (hábitos, problemas emocionales, brechas de aprendizaje). Los programas de regularización ofrecen atención personalizada y fomentan hábitos de estudio para promover la autonomía.`
-  },
-  {
-    title: 'Fisioterapia y Medicina Física',
-    icon: 'tabler:stretching',
-    content: `Utilizamos agentes naturales y tecnológicos:
-    <ul>
-      <li><strong>Electroterapia:</strong> TENS para dolor, EMS para fortalecimiento muscular, Ultrasonido y Láser.</li>
-      <li><strong>Termoterapia:</strong> Aplicación de calor para vasodilatación y relajación.</li>
-      <li><strong>Masajes:</strong> Sueco (relajación), Tejido Profundo (contracturas) y Drenaje Linfático.</li>
-    </ul>`
-  },
-  {
-    title: 'Nutrición: El Cimiento de la Salud Integral',
-    icon: 'tabler:apple',
-    content: `El eje intestino-cerebro revela que la dieta influye en la estabilidad emocional. Priorizamos la Dieta Mediterránea, Omega-3 para la plasticidad neuronal, Vitaminas B para neurotransmisores y fibra para la salud del microbioma.`
-  },
-  {
-    title: 'Asesoría Jurídica y Fiscal Estratégica',
-    icon: 'tabler:gavel',
-    content: `Seguridad legal en derecho de familia, vivienda y protección para PYMES. La asesoría fiscal optimiza la carga tributaria y previene sanciones, permitiendo un enfoque total en las actividades principales del cliente.`
-  },
-  {
-    title: 'Transformación Digital y Desarrollo Web',
-    icon: 'tabler:device-laptop',
-    content: `La digitalización garantiza visibilidad 24/7. El desarrollo web personalizado ofrece seguridad, control total del código y una experiencia de usuario premium que genera confianza y accesibilidad.`
-  }
-];
+// Fetch dynamic articles from Content Collection
+const posts = await getCollection('post');
+
+// Sort by date if available
+const sortedPosts = posts.sort((a, b) => 
+  (b.data.publishDate?.getTime() || 0) - (a.data.publishDate?.getTime() || 0)
+);
 ---
 
 <Layout metadata={metadata}>
   <HeroText
     tagline="Conocimiento para tu Bienestar"
     title="Artículos e Investigación"
-    subtitle="Explora nuestra colección de artículos especializados extraídos del análisis multidisciplinario 'Ecosistema Integral de Bienestar'."
+    subtitle="Explora nuestra colección de artículos especializados sobre salud mental, desarrollo infantil y gestión profesional."
   />
 
   <section class="relative px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl z-10">
     <div class="space-y-6">
-      {articulos.map((articulo) => (
+      {sortedPosts.map((post) => (
         <details class="group bg-white/80 backdrop-blur-sm rounded-4xl border border-pink-100 shadow-sm p-6 hover:shadow-md transition-all duration-300 animate__animated animate__fadeInUp">
           <summary class="flex items-center justify-between cursor-pointer list-none">
             <div class="flex items-center gap-4">
               <div class="p-3 bg-pink-50 rounded-2xl text-secondary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                <Icon name={articulo.icon} class="w-6 h-6" />
+                <Icon name={post.data.category === 'salud' ? 'tabler:heart-pulse' : 'tabler:article'} class="w-6 h-6" />
               </div>
               <h3 class="text-xl font-bold text-heading group-open:text-primary transition-colors">
-                {articulo.title}
+                {post.data.title}
               </h3>
             </div>
             <span class="transition group-open:rotate-180">
@@ -105,10 +42,19 @@ const articulos = [
             </span>
           </summary>
           <div class="mt-6 pt-6 border-t border-pink-50 text-default leading-relaxed prose prose-pink max-w-none animate__animated animate__fadeIn">
-            <Fragment set:html={articulo.content} />
+             {post.data.image && (
+                <img src={post.data.image} alt={post.data.title} class="w-full h-64 object-cover rounded-3xl mb-6 shadow-sm" />
+             )}
+             <div set:html={post.body} />
           </div>
         </details>
       ))}
+
+      {sortedPosts.length === 0 && (
+        <div class="text-center py-20 text-muted">
+           No hay artículos disponibles por el momento.
+        </div>
+      )}
     </div>
   </section>
 

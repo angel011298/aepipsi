@@ -6,6 +6,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import Content from '~/components/widgets/Content.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getCollection } from 'astro:content';
 
 const metadata = {
   title: 'AEPI - Centro Multidisciplinario | Amar y Educar con Psicología Integral',
@@ -14,6 +15,10 @@ const metadata = {
 
 const whatsappAdviceNumber = '525532005195';
 const whatsappClinicNumber = '525520381691';
+
+// Fetch dynamic content
+const teamMembers = await getCollection('team');
+const events = await getCollection('events');
 ---
 
 <Layout metadata={metadata}>
@@ -41,6 +46,21 @@ const whatsappClinicNumber = '525520381691';
       </span>
     </Fragment>
   </Hero>
+
+  <!-- Events Section -->
+  {events.length > 0 && (
+    <Features2
+      id="eventos"
+      title="Próximos Eventos"
+      subtitle="Talleres, pláticas y actividades diseñadas para tu crecimiento y bienestar."
+      tagline="Agenda"
+      items={events.map((event) => ({
+        title: event.data.title,
+        description: `${new Date(event.data.eventDate).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })} <br> ${event.body}`,
+        icon: 'tabler:calendar-event',
+      }))}
+    />
+  )}
 
   <!-- Compressed Services Grid -->
   <Features
@@ -81,7 +101,6 @@ const whatsappClinicNumber = '525520381691';
   />
 
   <!-- Detailed Sections -->
-  
   <Content
     id="psicologia-detalle"
     tagline="Detalle del Servicio"
@@ -99,57 +118,19 @@ const whatsappClinicNumber = '525520381691';
     </Fragment>
   </Content>
 
-  <Content
-    isReversed
-    id="nutricion-detalle"
-    tagline="Detalle del Servicio"
-    title="Nutrición Integral"
-    items={[
-      { title: 'Planes Personalizados', description: 'Dietas adaptadas a tus necesidades y objetivos.' },
-      { title: 'Educación Alimentaria', description: 'Aprende a comer de manera equilibrada y sostenible.' },
-    ]}
-    image={{ src: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=2070', alt: 'Nutricion' }}
-  >
-    <Fragment slot="content">
-      <p class="mb-4">Mejora tu salud desde adentro con la guía de nuestros expertos nutricionistas.</p>
-      <a href="https://cal.com/aepi/nutricion" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
-    </Fragment>
-  </Content>
-
-  <Content
-    id="fisioterapia-detalle"
-    tagline="Detalle del Servicio"
-    title="Fisioterapia y Rehabilitación"
-    items={[
-      { title: 'Termo y Electroterapia', description: 'Tecnología aplicada a la recuperación muscular.' },
-      { title: 'Masajes Terapéuticos', description: 'Técnicas manuales para aliviar tensión y dolor.' },
-      { title: 'Prevención de Lesiones', description: 'Ejercicios y consejos para cuidar tu cuerpo.' },
-    ]}
-    image={{ src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=2070', alt: 'Fisioterapia' }}
-  >
-    <Fragment slot="content">
-      <p class="mb-4">Recupera tu movilidad y bienestar físico con atención personalizada.</p>
-      <a href="https://cal.com/aepi/fisioterapia" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
-    </Fragment>
-  </Content>
-
-  <Content
-    isReversed
-    id="desarrollo-detalle"
-    tagline="Detalle del Servicio"
-    title="Desarrollo y Aprendizaje"
-    items={[
-      { title: 'Terapia de Lenguaje', description: 'Estimulación y corrección de trastornos del habla.' },
-      { title: 'Estimulación Temprana y Parental', description: 'Potencia el desarrollo de tu bebé desde el inicio.' },
-      { title: 'Regularización Académica', description: 'Apoyo para superar retos escolares y rezago.' },
-    ]}
-    image={{ src: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=1972', alt: 'Child Development' }}
-  >
-    <Fragment slot="content">
-      <p class="mb-4">Brindamos las mejores estrategias para el crecimiento integral de los más pequeños.</p>
-      <a href="https://cal.com/aepi/desarrollo" target="_blank" class="btn btn-primary">Agendar con Cal.com</a>
-    </Fragment>
-  </Content>
+  <!-- Team Section (Dynamic) -->
+  <Features2
+    id="equipo"
+    title="Conoce a nuestro equipo"
+    subtitle="Profesionales comprometidos con tu salud y bienestar integral."
+    tagline="Especialistas"
+    items={teamMembers.map((member) => ({
+      title: member.data.title,
+      description: member.data.role,
+      image: member.data.image,
+      icon: 'tabler:user-heart',
+    }))}
+  />
 
   <!-- Pricing Section -->
   <Pricing

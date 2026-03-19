@@ -5,6 +5,10 @@ export const headerData = {
       href: '/',
     },
     {
+      text: 'Próximos Eventos',
+      href: '/#eventos',
+    },
+    {
       text: 'Servicios',
       href: '/#servicios',
     },

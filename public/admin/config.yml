@@ -1,0 +1,37 @@
+backend:
+  name: github
+  repo: angel011298/aepipsi
+  branch: main
+
+media_folder: "public/assets/images/cms"
+public_folder: "/assets/images/cms"
+
+collections:
+  - name: "equipo"
+    label: "Nuestro Equipo"
+    folder: "src/content/team"
+    create: true
+    fields:
+      - { label: "Nombre", name: "title", widget: "string" }
+      - { label: "Puesto/Especialidad", name: "role", widget: "string" }
+      - { label: "Foto", name: "image", widget: "image" }
+      - { label: "Biografía", name: "body", widget: "markdown" }
+
+  - name: "articulos"
+    label: "Artículos e Infografías"
+    folder: "src/content/post"
+    create: true
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "publishDate", widget: "datetime" }
+      - { label: "Imagen de Portada", name: "image", widget: "image" }
+      - { label: "Contenido", name: "body", widget: "markdown" }
+
+  - name: "eventos"
+    label: "Próximos Eventos"
+    folder: "src/content/events"
+    create: true
+    fields:
+      - { label: "Nombre del Evento", name: "title", widget: "string" }
+      - { label: "Fecha del Evento", name: "eventDate", widget: "datetime" }
+      - { label: "Descripción", name: "body", widget: "markdown" }
