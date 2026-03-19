@@ -1,9 +1,9 @@
 ---
 import { SITE } from 'astrowind:config';
+import favIcon from '~/assets/images/logo-aepi.png';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
+<span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white flex items-center">
+  <img src={favIcon.src} alt="AEPI Logo" class="w-10 h-10 mr-2 inline-block" />
+  {SITE?.name}
 </span>
